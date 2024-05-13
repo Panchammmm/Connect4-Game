@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url("img/5.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.currentPlayer {
+    font-size: 2rem;
+    font-family: 'Carter One', cursive;
+    margin-top: 8rem;
+}
+
+.player {
+    color: blue;
+    font-family: sans-serif;
+    padding-left: 1rem;
+    font-weight: 600;
+}
+
+.board {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 276px;
+    width: 330px;
+    background: blue;
+    margin: 2rem auto;
+    box-shadow: 2px 3px 7px rgb(104, 104, 104);
+}
+
+.board div {
+    height: 40px;
+    width: 40px;
+    margin: 3px;
+    border-radius: 20px;
+
+}
+
+.square {
+    background: white;
+}
+
+.taken {
+    /* background: red !important; */
+}
+
+.player-one {
+    background: red;
+}
+
+.player-two {
+    background: rgb(0, 226, 68);
+}
+
+.restart {
+    background-image: linear-gradient(#ffaf36, #ff6823);
+    width: 230px;
+    height: 200px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 35%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 1px solid rgb(121, 6, 6);
+    box-shadow: 1px 2px 5px rgb(100, 100, 100);
+}
+
+.playAgain {
+    padding: .5rem 1rem;
+    border-radius: 10px 20px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+
+}
+
+.playAgain:hover {
+    background: black;
+    color: #fff;
+    box-shadow: 0px 1px 7px rgb(90, 34, 34);
+}
+
+.angrybird {
+    margin-top: -15%;
+    width: 70%;
+    display: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.angrybird2 {
+    margin-top: -10%;
+    width: 50%;
+    display: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+@media screen and (min-width:1024px) {
+    .angrybird2 {
+        width: 20%;
+        margin-top: -5%;
+    }
+
+    .angrybird {
+        width: 20%;
+        margin-top: -5%;
+    }
+}
+
+/* @media screen and (min-width:768px),(max-width:1024px){
+    .angrybird2{
+        margin-top: 16%;
+       width: 50%;
+     }  
+     .restart{
+         width: 50%;
+         height: 30%;
+         margin-top:-10rem;
+     }
+     .playAgain{
+         width: 50%;
+         height: 20%;
+         font-size: 2rem;
+     }
+     .board{
+         height: 552px;
+         width: 660px;
+     }
+     .board div{
+        height: 80px;
+        width: 80px;
+        margin: 6px;
+        border-radius: 40px;
+       
+    }
+}
+ */
