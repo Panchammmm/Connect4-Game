@@ -96,11 +96,11 @@ function checkWon() {
     for (let y = 0; y < winningArray.length; y++) { // Loop through each winning combination
         let square = winningArray[y]; // Get a winning combination
         if (square.every(q => squares[q].classList.contains("player-one"))) { // If player one wins
-            setTimeout(() => alert("player one(red) wins "), 200); // Show alert
+            setTimeout(() => alert("player one (RED) wins "), 200); // Show alert
             setTimeout(() => restart.style.display = "flex", 500); // Show restart button
             setTimeout(() => angrybird2.style.display = "block", 200); // Display angry bird image 2
         } else if (square.every(q => squares[q].classList.contains("player-two"))) { // If player two wins
-            setTimeout(() => alert("player two(yellow) wins"), 200); // Show alert
+            setTimeout(() => alert("player two (GREEN) wins"), 200); // Show alert
             setTimeout(() => restart.style.display = "flex", 500); // Show restart button
             setTimeout(() => angrybird.style.display = "block", 200); // Display angry bird image 1
         }
