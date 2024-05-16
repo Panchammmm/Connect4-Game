@@ -1,10 +1,10 @@
-// Selecting necessary elements from the DOM
-let board = document.querySelector(".board"); // Selecting the game board
-let player = document.querySelector(".player"); // Selecting the element displaying the current player
-let playAgain = document.querySelector(".playAgain"); // Selecting the "Play Again" button
-let restart = document.querySelector(".restart"); // Selecting the restart section
-let angrybird = document.querySelector(".angrybird"); // Selecting the angry bird image 1
-let angrybird2 = document.querySelector(".angrybird2"); // Selecting the angry bird image 2
+let board = document.querySelector(".board");
+let player = document.querySelector(".player");
+let playAgain = document.querySelector(".playAgain");
+let restart = document.querySelector(".restart");
+let angrybird = document.querySelector(".angrybird");
+let angrybird2 = document.querySelector(".angrybird2");
+
 let box = 0; // Variable to keep track of filled boxes
 
 angrybird.style.display = "none"; // Hide angry bird image 1
@@ -44,32 +44,32 @@ document.addEventListener("DOMContentLoaded", loadDOM);
 
 // Function to create the game board
 function createBoard() {
-    for (let i = 0; i < 49; i++) { // Loop to create 49 squares for the board
-        let div = document.createElement("div"); // Create a new div element for each square
-        div.setAttribute("data-id", i); // Set the data-id attribute for each square
-        div.className = "square"; // Set the class name for each square as "square"
-        if (i >= 42) { // Set class name to "taken" for squares in the top rows to prevent further moves
+    for (let i = 0; i < 49; i++) {
+        let div = document.createElement("div");
+        div.setAttribute("data-id", i);
+        div.className = "square";
+        if (i >= 42) {
             div.className = "taken";
         }
-        board.appendChild(div); // Append the square to the game board
+        board.appendChild(div);
     }
 }
 
 // Function to load the DOM content
 function loadDOM() {
-    createBoard(); // Create the game board
+    createBoard();
     player.innerHTML = currentPlayer; // Display the current player
-    let squares = document.querySelectorAll(".board div"); // Select all squares on the board
+    let squares = document.querySelectorAll(".board div");
     Array.from(squares).forEach(square => {
-        square.addEventListener("click", clickBox); // Add click event listener to each square
+        square.addEventListener("click", clickBox);
     });
-    playAgain.addEventListener("click", reset); // Add click event listener to the "Play Again" button
+    playAgain.addEventListener("click", reset);
 }
 
 // Function to handle clicking on a square
 function clickBox() {
-    let squares = document.querySelectorAll(".board div"); // Select all squares on the board
-    let click = parseInt(this.dataset.id); // Get the clicked square's index
+    let squares = document.querySelectorAll(".board div");
+    let click = parseInt(this.dataset.id);
 
     // Check if the clicked square is playable (i.e., not already taken)
     if (!squares[click].classList.contains("taken")) {
@@ -98,7 +98,6 @@ function clickBox() {
         currentPlayer = currentPlayer === 1 ? 2 : 1;
         player.innerHTML = currentPlayer;
 
-        // Increment the box count
         box++;
 
         // Check if all boxes are filled
@@ -113,17 +112,17 @@ function clickBox() {
 
 // Function to check if there's a winner
 function checkWon() {
-    let squares = document.querySelectorAll(".board div"); // Select all squares on the board
-    for (let y = 0; y < winningArray.length; y++) { // Loop through each winning combination
-        let square = winningArray[y]; // Get a winning combination
-        if (square.every(q => squares[q].classList.contains("player-one"))) { // If player one wins
-            setTimeout(() => alert("player one (RED) wins "), 200); // Show alert
-            setTimeout(() => restart.style.display = "flex", 500); // Show restart button
-            setTimeout(() => angrybird2.style.display = "block", 200); // Display angry bird image 2
-        } else if (square.every(q => squares[q].classList.contains("player-two"))) { // If player two wins
-            setTimeout(() => alert("player two (GREEN) wins"), 200); // Show alert
-            setTimeout(() => restart.style.display = "flex", 500); // Show restart button
-            setTimeout(() => angrybird.style.display = "block", 200); // Display angry bird image 1
+    let squares = document.querySelectorAll(".board div");
+    for (let y = 0; y < winningArray.length; y++) {
+        let square = winningArray[y];
+        if (square.every(q => squares[q].classList.contains("player-one"))) {
+            setTimeout(() => alert("player one (RED) wins "), 200);
+            setTimeout(() => restart.style.display = "flex", 500);
+            setTimeout(() => angrybird2.style.display = "block", 200);
+        } else if (square.every(q => squares[q].classList.contains("player-two"))) {
+            setTimeout(() => alert("player two (GREEN) wins"), 200);
+            setTimeout(() => restart.style.display = "flex", 500);
+            setTimeout(() => angrybird.style.display = "block", 200);
         }
     }
 }
@@ -132,7 +131,7 @@ function checkWon() {
 function reset() {
     board.innerHTML = ""; // Clear the game board
     loadDOM(); // Reload the DOM content
-    restart.style.display = "none"; // Hide the restart button
-    angrybird.style.display = "none"; // Hide angry bird image 1
-    angrybird2.style.display = "none"; // Hide angry bird image 2
+    restart.style.display = "none";
+    angrybird.style.display = "none";
+    angrybird2.style.display = "none";
 }
