@@ -7,6 +7,11 @@ let angrybird = document.querySelector(".angrybird"); // Selecting the angry bir
 let angrybird2 = document.querySelector(".angrybird2"); // Selecting the angry bird image 2
 let box = 0; // Variable to keep track of filled boxes
 
+angrybird.style.display = "none"; // Hide angry bird image 1
+angrybird2.style.display = "none"; // Hide angry bird image 2
+
+let currentColorElement = document.querySelector('.currentColor');
+
 // Array containing all possible winning combinations
 let winningArray = [
     [0, 1, 2, 3], [41, 40, 39, 38], [7, 8, 9, 10], [34, 33, 32, 31], [14, 15, 16, 17],
@@ -65,28 +70,44 @@ function loadDOM() {
 function clickBox() {
     let squares = document.querySelectorAll(".board div"); // Select all squares on the board
     let click = parseInt(this.dataset.id); // Get the clicked square's index
-    if (squares[click + 7].classList.contains("taken") && !squares[click].classList.contains("taken")) {
-        // Check if the clicked square is playable
-        if (currentPlayer === 1) { // If it's player 1's turn
-            currentPlayer = 2; // Switch to player 2
-            player.innerHTML = currentPlayer; // Update the displayed current player
-            this.className = "player-one taken"; // Set class for the clicked square for player 1
-            player.style.color = "green";
-            player.text
-            checkWon(); // Check if there's a winner
-        } else if (currentPlayer === 2) { // If it's player 2's turn
-            currentPlayer = 1; // Switch to player 1
-            player.innerHTML = currentPlayer; // Update the displayed current player
-            this.className = "player-two taken"; // Set class for the clicked square for player 2
-            player.style.color = "red"; 
-            checkWon(); // Check if there's a winner
+
+    // Check if the clicked square is playable (i.e., not already taken)
+    if (!squares[click].classList.contains("taken")) {
+        // Determine the lowest available position in the clicked column
+        let bottom = click;
+        while (bottom + 7 < 49 && !squares[bottom + 7].classList.contains("taken")) {
+            bottom += 7;
         }
-        if (box === 42) { // Check if all boxes are filled
-            setTimeout(() => alert("boxes filled"), 300); // Show alert
-            setTimeout(() => restart.style.display = "flex", 500); // Show restart button
+
+        // Update the clicked square to the lowest available position
+        click = bottom;
+
+        // Update the current player's piece in the selected position
+        if (currentPlayer === 1) {
+            squares[click].classList.add("player-one", "taken");
+            currentColorElement.style.backgroundColor = "#1acf96";
+        } else {
+            squares[click].classList.add("player-two", "taken");
+            currentColorElement.style.backgroundColor = "#ff0000";
+        }
+
+        // Check for a winner
+        checkWon();
+
+        // Switch to the next player
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        player.innerHTML = currentPlayer;
+
+        // Increment the box count
+        box++;
+
+        // Check if all boxes are filled
+        if (box === 49) {
+            setTimeout(() => alert("Boxes filled"), 300);
+            setTimeout(() => restart.style.display = "flex", 500);
         }
     } else {
-        alert("You cannot build on an empty space or on a space that has been built on"); // Alert if square is not playable
+        alert("You cannot build on an empty space or on a space that has been built on");
     }
 }
 
@@ -112,7 +133,6 @@ function reset() {
     board.innerHTML = ""; // Clear the game board
     loadDOM(); // Reload the DOM content
     restart.style.display = "none"; // Hide the restart button
-    angrybird.style.display = "block"; // Display angry bird image 1
     angrybird.style.display = "none"; // Hide angry bird image 1
     angrybird2.style.display = "none"; // Hide angry bird image 2
 }

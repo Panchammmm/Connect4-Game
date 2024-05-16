@@ -13,7 +13,11 @@
 <body>
     <div class="container">
         <span class="heading">Play Connect 4</span>
-        <div class="currentPlayer">Current Player :<span class="player"></span> </div>
+        <div class="player-section" style="display: grid; margin: auto;">
+            <div class="currentPlayer">Current Player :<span class="player"></span>
+                <div class="currentColor"></div>
+            </div>
+        </div>
 
         <div class="board"></div>
         <div class="restart">
@@ -22,6 +26,35 @@
 
         <img src="img/congratulations.gif" class="angrybird">
         <img src="img/congratulations.gif" class="angrybird2">
+
+        <!-- Rules Section -->
+        <div class="rules-section">
+            <h2>Rules of Connect 4</h2>
+            <ul>
+                <li>1. Connect 4 is a two-player strategy game played on a vertical grid of 7 columns and 6 rows.</li>
+                <li>2. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of
+                    four of one's own discs.</li>
+                <li>3. Players take turns dropping colored discs from the top into a column. The disc falls down to the
+                    lowest unoccupied row in that column.</li>
+                <li>4. The game ends when one player achieves a line of four discs, or when the board is full and no
+                    more
+                    moves can be made.</li>
+                <li>5. If the board is full and no player has achieved a line of four discs, the game is a draw.</li>
+            </ul>
+        </div>
+        <!-- End of Rules Section -->
+
+        <div class="border-style"></div>
+
+        <footer>
+            <div class="copyright">
+                &copy; <span id="currentYear"></span> Pancham Sardar. All rights reserved. | Follow me on <a href="https://www.linkedin.com/in/pancham-sardar-6a466227b" target="_blank">LinkedIn</a>
+            </div>
+        </footer>
+        
+        <script>
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+        </script>        
     </div>
 
     <script src="script.js"></script>
